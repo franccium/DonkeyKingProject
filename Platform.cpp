@@ -21,4 +21,5 @@ void Platform::render(SDL_Renderer* renderer)
 {
     this->renderSprite(renderer);
     //puts("rendered platform");
+    this->drawHitbox(renderer);
 }

@@ -13,8 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Entities">
-      <UniqueIdentifier>{3e473d78-9a53-438b-a245-3a7e7a0e024a}</UniqueIdentifier>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{7f566169-7e3a-4ac2-8364-922b2637f2bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Characters">
+      <UniqueIdentifier>{4afe2d83-84f3-49d0-a035-a4031f75fa85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\LevelElements">
+      <UniqueIdentifier>{56471c8e-f233-41c6-af3e-43821bccc2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScreenStates">
+      <UniqueIdentifier>{53da23a1-5b35-48ed-b234-b456171c8448}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,39 +33,42 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Header Files\Entities</Filter>
+    <ClCompile Include="AnimationPlayer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Entities\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScreenState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Platform.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Barrel.cpp">
+      <Filter>Entities\LevelElements</Filter>
     </ClCompile>
     <ClCompile Include="Ladder.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Entities\LevelElements</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Entities\LevelElements</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>ScreenStates</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenState.cpp">
+      <Filter>ScreenStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>ScreenStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Donkey.cpp">
+      <Filter>Entities\Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -65,29 +77,43 @@
     <ClInclude Include="Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Platform.h">
+    <ClInclude Include="AnimationPlayer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrel.h">
+      <Filter>Entities\LevelElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Entities\LevelElements</Filter>
     </ClInclude>
     <ClInclude Include="Ladder.h">
-      <Filter>Header Files</Filter>
+      <Filter>Entities\LevelElements</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenState.h">
+      <Filter>ScreenStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>ScreenStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>ScreenStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Donkey.h">
+      <Filter>Entities\Characters</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dozrobienia.txt">
+      <Filter>Header Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

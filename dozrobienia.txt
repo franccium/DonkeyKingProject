@@ -1,0 +1,24 @@
+array staow i na kazdym indexie zmacrowanym typu MAINMENUINDEX jest screensatte, dzieki temu sie beda zapisywaly?
+ale chyba nie musza i tak sie zapisywac ale no
+
+
+na wolny dzien: 
+gui
+playertext
+scores
+timer
+
+
+system kolizji:
+kolizje horyzontalne
+kolizje przy wchodzneiu na drabine 
+mozliwosc zejscia po drabinie gdy jest w platformie - teaz moge climb dac, ale nie moge climbowac bo koliduje
+
+mozliwosc skoku na drabinach
+
+
+kolizja tylko doluz drabika by zobaczyc czy dalej climbing gdy sie schodzi z drabinki w przepasc albo gdy sie wchodzi na saa gore by nie moc latac nad drabinka
+
+climbing up -> gdy koniec hitboxa == koniec platyformy koniec 
+climbing down -> gdy koniec hitboxa == poczatek platformy koniec
+tylko ze teraz oba przypadki nie moga byc zainicjalizowane

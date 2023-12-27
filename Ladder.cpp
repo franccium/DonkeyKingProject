@@ -17,4 +17,6 @@ void Ladder::update(const float& dt)
 void Ladder::render(SDL_Renderer* renderer)
 {
 	this->renderSprite(renderer);
+
+    this->drawHitbox(renderer);
 }

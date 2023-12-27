@@ -7,6 +7,12 @@ Player::Player(SDL_Renderer *renderer, float pos_x, float pos_y)
     this->velocity = {0.f, 0.f};
     this->isInAir = true;
     this->canClimb = false;
+    this->isClimbing = false;
+    this->canClimbUp = false;
+    this->canClimbDown = false;
+    this->currentState = IDLE;
+    this->setHiboxOffset(PLAYER_HITBOX_OFFSET);
+    this->initHitbox();
 }
 
 Player::~Player() 
@@ -23,15 +29,33 @@ void Player::setVelocity(SDL_FPoint new_velocity)
     this->velocity = new_velocity;
 }
 
-void Player::move()
+const bool Player::getCanClimb() const
 {
-    
+    return this->canClimb;
 }
 
-void Player::updatePosition()
+const bool Player::getIsClimbing() const
 {
-    this->position.x += this->velocity.x;
-    this->position.y += this->velocity.y;
+    return this->isClimbing;
+}
+
+const PlayerStates Player::getPlayerState() const
+{
+    return this->currentState;
+}
+
+bool Player::isFutureColliding(const SDL_FRect& future_hitbox, const SDL_FRect& obstacle_hitbox)
+{
+    return SDL_HasIntersectionF(&future_hitbox, &obstacle_hitbox);
+}
+
+void Player::updatePosition(const float &dt)
+{
+    this->position.x += this->velocity.x * dt;
+    this->position.y += this->velocity.y * dt;
+    //char buffer[100];
+    //sprintf_s(buffer, "velY: %f", this->velocity.y);
+    //puts(buffer);
     this->updateSpritePosition();
     //char buffer[100];
     //sprintf_s(buffer, "pos: %f", position.x);
@@ -70,11 +94,11 @@ void Player::updateMovementInput(SDL_Event event, const float& dt)
     const Uint8 *state = SDL_GetKeyboardState(NULL);
     if (state[SDL_SCANCODE_A])
     {
-        this->moveLeft(dt);
+        this->move(MOVE_LEFT);
     }
     else if (state[SDL_SCANCODE_D])
     {
-        this->moveRight(dt);
+        this->move(MOVE_RIGHT);
     }
     else 
     {
@@ -83,7 +107,7 @@ void Player::updateMovementInput(SDL_Event event, const float& dt)
     if (state[SDL_SCANCODE_SPACE])
     {
         this->jump();
-    }
+    }/*
     if(this->canClimb)
     {
         if (state[SDL_SCANCODE_W])
@@ -99,19 +123,27 @@ void Player::updateMovementInput(SDL_Event event, const float& dt)
             this->climb(CLIMB_NONE);
         }
     }
+    */
+   if(this->canClimbUp)
+   {
+        if (state[SDL_SCANCODE_W])
+        {
+            this->climb(CLIMB_UP);
+        }
+    }
+    else if(this->canClimbDown)
+    {
+         if (state[SDL_SCANCODE_S])
+         {
+              this->climb(CLIMB_DOWN);
+         }
+    }
+
 }
 
-void Player::moveLeft(const float &dt)
+void Player::move(short move_direction)
 {
-    this->velocity.x = -PLAYER_HORIZONTAL_SPEED * dt;
-    //char buffer[100];
-    //sprintf_s(buffer, "vel: %f", velocity.x);
-    //puts(buffer);
-}
-
-void Player::moveRight(const float &dt)
-{
-    this->velocity.x = PLAYER_HORIZONTAL_SPEED * dt;
+    this->velocity.x = move_direction * PLAYER_HORIZONTAL_SPEED;
     //char buffer[100];
     //sprintf_s(buffer, "vel: %f", velocity.x);
     //puts(buffer);
@@ -120,7 +152,18 @@ void Player::moveRight(const float &dt)
 void Player::climb(const short climb_direction)
 {
     this->velocity.y = climb_direction * PLAYER_CLIMB_SPEED;
-    this->isInAir = true;
+    this->isClimbing = true;
+    if(!this->isInAir) 
+        this->isInAir = true;
+
+    if(climb_direction == CLIMB_DOWN)
+    {
+        this->currentState = CLIMBING_DOWN;
+    }
+    else if(climb_direction == CLIMB_UP)
+    {
+        this->currentState = CLIMBING_UP;
+    }
 }
 
 void Player::jump()
@@ -135,9 +178,9 @@ void Player::jump()
 void Player::updateGravity(const float& dt)
 {
     if(this->isInAir)
-    {
         this->velocity.y += PLAYER_GRAVITY * dt;
-    }
+    else
+        this->velocity.y = 0.f;
 }
 
 void Player::setInAir(bool is_in_air)
@@ -148,39 +191,46 @@ void Player::setInAir(bool is_in_air)
 void Player::setCanClimb(bool can_climb)
 {
     this->canClimb = can_climb;
+    if(!can_climb)
+        this->isClimbing = false;
+}
+
+void Player::setCanClimbUp(bool can_climb_up)
+{
+    this->canClimbUp = can_climb_up;
+}
+
+void Player::setCanClimbDown(bool can_climb_up)
+{
+    this->canClimbUp = can_climb_up;
 }
 
 void Player::stopHorizontalMovement()
 {
-    this->velocity.x = 0;
+    this->velocity.x = 0.f;
 }
 
-void updateAnimations()
+void Player::stopVerticalVelocity()
 {
-    /*if(this->velocity.x < 0)
-    {
-        this->animationState = AnimationState::MOVING_LEFT;
-    }
-    else if(this->velocity.x > 0)
-    {
-        this->animationState = AnimationState::MOVING_RIGHT;
-    }
-    else
-    {
-        this->animationState = AnimationState::IDLE;
-    }*/
+    this->velocity.y = 0.f;
+
+    //char buffer[100];
+    //sprintf_s(buffer, "modified: %f", this->velocity.y);
+    //puts(buffer);
 }
 
 void Player::update(const float& dt) 
 {
     this->updateGravity(dt);
-
-    this->updatePosition();
+    
+    this->updatePosition(dt);
     this->updateHitboxPosition();
 }
 
 void Player::render(SDL_Renderer* renderer)
 {
     this->renderSprite(renderer);
+
+    this->drawHitbox(renderer);
 }
 

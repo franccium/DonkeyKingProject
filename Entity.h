@@ -1,5 +1,4 @@
 #pragma once
-#include "MovementComponent.h"
 #include "Texturemanager.h"
 
 class Entity
@@ -8,18 +7,20 @@ protected:
     SDL_Point positionI;
     SDL_FPoint position;
     Sprite sprite;
-    SDL_Rect hitbox;
+    SDL_FRect hitbox;
 
-    //int spriteWidth;
-    //int spriteHeight;
+    SDL_FRect hitboxOffset;
 
-public:
-    Entity(const char* file_name, SDL_Renderer* renderer, float pos_x, float pos_y);
+    // int spriteWidth;
+    // int spriteHeight;
+
+    public : Entity(const char *file_name, SDL_Renderer *renderer, float pos_x, float pos_y);
     virtual ~Entity();
 
     //void addMovementComponent(const float termVelocity, const float acceleration); // moze dla beczek deceleration jak spadaja?
     //void addHitboxComponent(SDL_Rect& hitboxRect, float offsetX, float offsetY);   // , float width, float height
     void initHitbox();
+    void setHiboxOffset(SDL_FRect offset_rect);
 
     inline virtual const SDL_Point& getPositionI() const { return this->positionI; };
     inline virtual const SDL_FPoint& getPosition() const { return this->position; };
@@ -51,11 +52,14 @@ public:
     }
     void destroySprite();
 
+    SDL_Point getSpriteDimensions();
+
     void updateHitboxPosition();
     SDL_Rect getHitboxRectI() const;
     SDL_FRect getHitboxRect() const;
     bool isCollidingI(const SDL_Rect& other) const;
     bool isColliding(const SDL_FRect& other) const;
+    void drawHitbox(SDL_Renderer* renderer);
 
     virtual void update(const float& dt) = 0;
     virtual void render(SDL_Renderer* renderer) = 0;
