@@ -2,7 +2,7 @@
 #include "Game.h"
 
 Game::Game()
-    : window(NULL), renderer(NULL), isPlaying(false), screenState(NULL), dt(0.0f)
+    : window(NULL), renderer(NULL), isPlaying(false), screenState(NULL), dt(0.0f), lastScore(0)
 {
     this->initWindow();
     this->initScreenState();
@@ -35,34 +35,59 @@ void Game::initWindow()
 
 void Game::initScreenState()
 {
-    this->screenState = new GameState(this->renderer);
+    this->menuState = new MainMenuState(this->renderer, this);
+    this->changeScreenState(this->menuState);
+}
+
+void Game::switchToMenuState()
+{
+   // this->menuState = new MainMenuState(this->renderer, this);
+    this->changeScreenState(this->menuState);
+}
+
+void Game::changeScreenState(ScreenState* new_screen_state)
+{
+    if(this->screenState != NULL && this->screenState != this->menuState)
+        delete this->screenState;
+
+    this->screenState = new_screen_state;
+}
+
+void Game::saveScore(int score)
+{
+    this->lastScore = score;
+    this->changeScreenState(new ScoresState(this->renderer)); //todo: add score to file
+    this->switchToMenuState();
 }
 
 // handles events for quiting the game
 void Game::handleEvents() 
-{ 
+{
     SDL_Event event;
-    SDL_PollEvent(&event);
-
-    switch (event.type) 
+    while(SDL_PollEvent(&event))
     {
-    case SDL_KEYDOWN:
-        if (event.key.keysym.sym == SDLK_ESCAPE)
+        switch (event.type) 
+        {
+        case SDL_KEYDOWN:
+            if (event.key.keysym.sym == SDLK_ESCAPE)
+                this->isPlaying = false;
+            if (event.key.keysym.sym == SDLK_m)
+                this->switchToMenuState();
+            break;
+        case SDL_QUIT:
             this->isPlaying = false;
-        break;
-    case SDL_QUIT:
-        this->isPlaying = false;
-        break;
-    default:
-        break;
-    };
+            break;
+        default:
+            break;
+        };
+    }
 }
 
 void Game::updateDt()
 {
     Uint32 currtime = SDL_GetTicks();
     this->dt = (currtime - lastTime) * 0.001;
-
+    
     if(this->dtDelay > dt)
     {
         SDL_Delay(this->dtDelay - dt);
@@ -79,14 +104,10 @@ void Game::update()
 
 void Game::render()
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
     SDL_RenderClear(this->renderer);
 
     this->screenState->render(this->renderer);
-
-    // SDL_Texture* texture =
-    //     TextureManager::LoadTexture(PLAYER_SPRITE_PATH, this->renderer);
-    // TextureManager::renderTexture(this->renderer, texture, 20, 30);
 
     SDL_RenderPresent(this->renderer);
 }
@@ -105,10 +126,12 @@ void Game::runGame()
 
 void Game::quitGame()
 {
-    delete this->screenState;
-    
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
+    if (this->screenState != this->menuState)
+        delete this->screenState;
+    delete this->menuState;
+
+    SDL_DestroyWindow(this->window);
+    SDL_DestroyRenderer(this->renderer);
     SDL_Quit();
 }
 

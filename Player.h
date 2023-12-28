@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "AnimationPlayer.h"
 
 class Player
     : public Entity
@@ -13,6 +14,16 @@ private:
     bool canClimbUp;
     bool canClimbDown;
 
+    AnimationPlayer* animationPlayer;
+
+    enum PlayerStates
+    {
+        IDLE,
+        WALKING,
+        JUMPING,
+        CLIMBING_DOWN,
+        CLIMBING_UP
+    };
     PlayerStates currentState;
 
 public:
@@ -24,9 +35,10 @@ public:
 
     const bool getCanClimb() const;
     const bool getIsClimbing() const;
+    const bool getInAir() const;
     const PlayerStates getPlayerState() const;
 
-    bool isFutureColliding(const SDL_FRect& future_hitbox, const SDL_FRect& obstacle_hitbox);
+    void initAnimations(SDL_Renderer *renderer);
 
     void updatePosition(const float &dt);
     void move(short move_direction);
@@ -37,9 +49,10 @@ public:
     void setCanClimb(bool can_climb);
     void setCanClimbUp(bool can_climb_up);
     void setCanClimbDown(bool can_climb_down);
-    void stopHorizontalMovement();
+    void stopHorizontalVelocity();
     void stopVerticalVelocity();
-    void updateMovementInput(SDL_Event event, const float &dt);
+    void updateMovementInput(const float &dt);
+    void updateAnimations();
     void update(const float &dt) override;
     void render(SDL_Renderer* renderer) override;
 };

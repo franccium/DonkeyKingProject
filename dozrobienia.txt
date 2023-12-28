@@ -1,4 +1,4 @@
-array staow i na kazdym indexie zmacrowanym typu MAINMENUINDEX jest screensatte, dzieki temu sie beda zapisywaly?
+﻿array staow i na kazdym indexie zmacrowanym typu MAINMENUINDEX jest screensatte, dzieki temu sie beda zapisywaly?
 ale chyba nie musza i tak sie zapisywac ale no
 
 
@@ -7,18 +7,96 @@ gui
 playertext
 scores
 timer
+narysowac animacje
+
 
 
 system kolizji:
 kolizje horyzontalne
 kolizje przy wchodzneiu na drabine 
-mozliwosc zejscia po drabinie gdy jest w platformie - teaz moge climb dac, ale nie moge climbowac bo koliduje
-
 mozliwosc skoku na drabinach
 
 
 kolizja tylko doluz drabika by zobaczyc czy dalej climbing gdy sie schodzi z drabinki w przepasc albo gdy sie wchodzi na saa gore by nie moc latac nad drabinka
-
+mozliwosc zejscia po drabinie gdy jest w platformie - teaz moge climb dac, ale nie moge climbowac bo koliduje
 climbing up -> gdy koniec hitboxa == koniec platyformy koniec 
 climbing down -> gdy koniec hitboxa == poczatek platformy koniec
 tylko ze teraz oba przypadki nie moga byc zainicjalizowane
+problem 22.12: climbowanie w dol jest zwiekszane grawitacja a w gore zmniejszane grawitacja 
+
+
+kolizja z prawa/ lewa okna gry
+
+
+
+slope
+fizyka beczek na slope
+
+
+
+musze zdobyc minimum 10 punktow
+
+wymaganie obowiazkowe (5 pkt):
+1. gui, esc, n
+2. jeden level
+3. ruch postaci
+4. mierzenie czasu gry
+
+wymagania nieobowiazkowe (max 10 pkt):
+zrobione:
+A. skoki - 1 pkt
+C. beczki - stała trasa do punktu końcowego lub rposte zasady - 1pkt
+F. punkty - gui, znajdzki, koncecznie levela - 1pkt
+I. kodowanie etapu gry w pliku - 1pkt
+
+niezrobione:
+B. 3 etapy, zmaiana etapu przez 1,2,3 klawiatura, wejscie w obszar konczacy etap - 1 pkt
+	- 3 etapy zrobic
+
+D. menu, gui - 1pkt
+	- zapis
+	- odczyt
+	- Tekst wpisywany przez gracza (np. podczas wpisywania pseudonimu
+		lub nazwy pliku do zapisu) powinien zawsze być widoczny i klawisz
+		backspace powinien umożliwić usuwanie liter.
+	- Wyświetlanie na ekranie pozostałej liczby żyć postaci w formie
+	graficznej.
+	d. Utrata życia po dotknięciu beczki (jeśli zaimplementowano punkt C).
+	e. Utrata życia powinna wyświetlić zapytanie o kontynuację i (jeśli
+	zaimplementowano punkt F) liczbę zdobytych punktów.
+	f. Utrata wszystkich żyć powinna spowodować wyświetlenie menu
+	głównego i (jeśli zaimplementowano punkt H) po wcześniejszym
+	zapytaniu o zapis wyniku.
+
+E. animacje - bieg,skok,wspinanie; animacje osla, animacje beczek, 
+punkty bonusowe, szybkosc animacji nie zalazna od szybkosci komputera - 2pkt
+
+G. zapisywanie najlespzych wynikow - 1pkt:
+	Po zakończeniu gry powinno być możliwe wpisanie swojego
+	pseudonimu i wyniku do pliku. Ilość zapisanych w pliku wyników nie
+	powinna być ograniczona
+	b. Z poziomu menu można wyświetlić posortowaną listę wyników.
+	c. Liczba wyników na ekranie, w przeciwieństwie do zawartych w pliku,
+	powinna być ograniczona.
+	d. Jeśli nie wszystkie wyniki mieszczą się na ekranie program powinien
+	umożliwić dotarcie do nich np. poprzez przełączanie się między
+	stronami lub przewijanie listy.
+	e. W przypadku braku punktu F zapisywać można czas zamiast wyników.
+
+H. pochylone platformy
+
+I. kodowanie etapu gry w pliku   -  chyba proste? wystarzy pozycje zapisac typu PLATFORMS: 7   300,200 450,280 itd.
+trzeba napisac ile jest danego rodzaju
+zrobic tez dla maxbarrelcount zeby nie bylo
+program nie powinien nakładać limitów na maksymalną liczbę obiektów różnego typu znajdujących się w pliku, Oznacza to, że
+program analizuje zawartość pliku i następnie przydziela pamięć
+wystarczającą na przechowanie danych o wszystkich obiektach znajdujących się w pliku
+-- Dodatkowo w pliku powinny znajdować się informacje o wszystkich
+elementach o które rozszerzono implementację podczas realizacji
+wymagań nieobowiązkowych.
+
+dodatkowe, gdy wszystkie spelnione:
+J. fizyka - platformy pod katem, rownie pochyle, beczki maja fizyke
+K. dynamiczne tworzenie etapu - specjalny etap w trybie nieskonczonym
+
+--- PRZEMYSLEC CZYM JEST A CZYM NIE JEST BIBLIOTEKA STANDARDOWA CPP

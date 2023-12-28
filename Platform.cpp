@@ -20,6 +20,7 @@ void Platform::update(const float& dt)
 void Platform::render(SDL_Renderer* renderer)
 {
     this->renderSprite(renderer);
+    //TextureManager::renderTextureRotated(renderer, &this->sprite, 30.0);
     //puts("rendered platform");
     this->drawHitbox(renderer);
 }

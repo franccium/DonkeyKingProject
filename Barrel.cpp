@@ -43,9 +43,26 @@ void Barrel::setInAir(bool is_in_air)
     this->isInAir = is_in_air;
 }
 
+const bool Barrel::getInAir() const
+{
+    return this->isInAir;
+}
+
 void Barrel::stopHorizontalMovement()
 {
     this->velocity.x = 0;
+}
+
+void Barrel::swapDirection()
+{
+    (this->position.x > SCREEN_WIDTH / 2) 
+        ? this->velocity.x = -BARREL_HORIZONTAL_SPEED
+        : this->velocity.x = BARREL_HORIZONTAL_SPEED;
+}
+
+void Barrel::stopVerticalVelocity()
+{
+    this->velocity.y = 0;
 }
 
 const bool Barrel::getOutOfBounds()
@@ -59,6 +76,16 @@ const bool Barrel::getOutOfBounds()
     }
 
     return false;
+}
+
+const bool Barrel::getBonusPointsAvailable() const
+{
+    return this->bonusPointsAvailable;
+}
+
+void Barrel::setBonusPointsAvailable(bool bonus_points_available)
+{
+    this->bonusPointsAvailable = bonus_points_available;
 }
 
 void Barrel::update(const float &dt)

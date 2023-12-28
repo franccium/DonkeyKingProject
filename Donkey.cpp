@@ -5,7 +5,7 @@
 #include "Barrel.h"
 
 Donkey::Donkey(SDL_Renderer *renderer, float pos_x, float pos_y)
-    : Entity(DONKEY_SPRITE_PATH, renderer, pos_x, pos_y)
+    : Entity(DONKEY_SPRITE_PATH, renderer, pos_x, pos_y), barrelCooldown(3.f), barrelTimer(0.f)
 {
     
 }
@@ -22,13 +22,12 @@ void Donkey::updatePosition(const float &dt)
     this->updateSpritePosition();
 }
 
-const bool Donkey::getBarrelReady()
+const bool Donkey::getBarrelReady(const float& dt)
 {
-    Uint32 barrelTime = SDL_GetTicks();
-
-    if (barrelTime - this->lastBarrelTime >= this->barrelCooldown)
+    this->barrelTimer += dt;
+    if (this->barrelTimer >= this->barrelCooldown)
     {
-        this->lastBarrelTime = barrelTime;
+        this->barrelTimer = 0.f;
         return true;
     }
 

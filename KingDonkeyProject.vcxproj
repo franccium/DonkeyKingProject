@@ -137,6 +137,10 @@
   <ItemGroup>
     <ClCompile Include="AnimationPlayer.cpp" />
     <ClCompile Include="Barrel.cpp" />
+    <ClCompile Include="BarrelSet.cpp" />
+    <ClCompile Include="BonusText.cpp" />
+    <ClCompile Include="BonusTrophy.cpp" />
+    <ClCompile Include="Cat.cpp" />
     <ClCompile Include="Donkey.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp">
@@ -144,12 +148,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="Ladder.cpp" />
+    <ClCompile Include="LevelPickerState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ScoresState.cpp" />
     <ClCompile Include="ScreenState.cpp" />
+    <ClCompile Include="ScreenText.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -158,6 +166,10 @@
   <ItemGroup>
     <ClInclude Include="AnimationPlayer.h" />
     <ClInclude Include="Barrel.h" />
+    <ClInclude Include="BarrelSet.h" />
+    <ClInclude Include="BonusText.h" />
+    <ClInclude Include="BonusTrophy.h" />
+    <ClInclude Include="Cat.h" />
     <ClInclude Include="Donkey.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h">
@@ -165,12 +177,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GuiManager.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="LevelPickerState.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ScoresState.h" />
     <ClInclude Include="ScreenState.h" />
+    <ClInclude Include="ScreenText.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

@@ -44,7 +44,7 @@ protected:
     inline void loadSprite(const char* file_name, SDL_Renderer* renderer) 
     {
         //this->sprite.texture = TextureManager::LoadTexture(file_name, renderer, &sprite);
-        TextureManager::loadTexture(file_name, renderer, &this->sprite);
+        TextureManager::loadSprite(file_name, renderer, &this->sprite);
     }
     inline void renderSprite(SDL_Renderer* renderer) 
     { 

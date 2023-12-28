@@ -1,6 +1,7 @@
 #pragma once
+class ScreenState;
+class MainMenuState;
 #include "MainMenuState.h"
-#include "GameState.h"
 
 class Game {
 private:
@@ -9,17 +10,26 @@ private:
     bool isPlaying;
 
     ScreenState* screenState;
+    MainMenuState* menuState;
 
     float dt;
     Uint32 lastTime;
     Uint32 dtDelay = 1000 / FPS_CAP;
 
-  public:
+    int lastScore;
+
+public:
     Game();
     ~Game();
 
     void initWindow();
+
     void initScreenState();
+    void switchToMenuState();
+    void changeScreenState(ScreenState* new_screen_state);
+
+    void saveScore(int score);
+
     void handleEvents();
     void updateDt();
     void update();

@@ -25,6 +25,9 @@
     <Filter Include="ScreenStates">
       <UniqueIdentifier>{53da23a1-5b35-48ed-b234-b456171c8448}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{c492eef7-da6b-41a0-a6b8-8525e11e3578}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +68,30 @@
     </ClCompile>
     <ClCompile Include="Donkey.cpp">
       <Filter>Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="BarrelSet.cpp">
+      <Filter>Entities\LevelElements</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>Entities\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenText.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoresState.cpp">
+      <Filter>ScreenStates</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelPickerState.cpp">
+      <Filter>ScreenStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusText.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BonusTrophy.cpp">
+      <Filter>Entities\LevelElements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +136,30 @@
     </ClInclude>
     <ClInclude Include="Donkey.h">
       <Filter>Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrelSet.h">
+      <Filter>Entities\LevelElements</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>Entities\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenText.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiManager.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoresState.h">
+      <Filter>ScreenStates</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelPickerState.h">
+      <Filter>ScreenStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusText.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusTrophy.h">
+      <Filter>Entities\LevelElements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
